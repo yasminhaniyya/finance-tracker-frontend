@@ -184,7 +184,7 @@
 
 <script>
   // ✅ FIX 1: BASE_URL tanpa /transactions
-  const BASE_URL = 'https://undecided-ramrod-rudder.ngrok-free.app/api'
+  const BASE_URL = 'https://undecided-ramrod-rudder.ngrok-free.dev/api'
 
   // ✅ FIX 2: Header ngrok di semua fetch
   const HEADERS = {
@@ -232,9 +232,7 @@
 
   async function loadTransactions() {
     try {
-      const response = await fetch(API_URL, {
-  headers: { 'ngrok-skip-browser-warning': 'true' }
-});
+      const res = await fetch(`${BASE_URL}/transactions`, { headers: HEADERS })
       allTransactions = await res.json()
       renderTransactions(); updateSummary(); renderChart()
     } catch (e) { console.error('Gagal load transaksi:', e) }
